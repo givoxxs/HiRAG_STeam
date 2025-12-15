@@ -8,7 +8,7 @@ Hướng dẫn chạy `hi_Search_custom.py` từ đầu.
 
 ## Thiết lập môi trường
 ```bash
-conda create -n hirag python=3.11 -y
+conda create -n hirag python=3.10 -y
 conda activate hirag
 ```
 
