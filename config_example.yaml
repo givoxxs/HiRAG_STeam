@@ -1,0 +1,50 @@
+# OpenAI Configuration
+openai:
+  embedding_model: "text-embedding-3-small"
+  model: "gpt-5-nano"
+  api_key: "***"
+  base_url: "https://api.openai.com/v1"
+
+# GLM Configuration
+glm:
+  model: "glm-4-plus"
+  api_key: "***"
+  base_url: "https://open.bigmodel.cn/api/paas/v4"
+  embedding_model: "embedding-3"
+
+# Deepseek Configuration
+deepseek:
+  model: "deepseek-chat"
+  api_key: "***"
+  base_url: "https://api.deepseek.com"
+
+# Hugging Face Embedding Configuration
+huggingface:
+  embedding_model: "huyydangg/DEk21_hcmute_embedding"
+  embedding_dim: 768
+  device: "cpu"  # "cpu" or "cuda"
+
+# Model Parameters
+model_params:
+  openai_embedding_dim: 1536
+  glm_embedding_dim: 2048
+  max_token_size: 8192
+
+# Custom LLM Configuration
+custom_llm:
+  url: "https://abc.app/v1/chat/completions"
+  model: "meta-llama/Llama-3.1-8B-Instruct"
+  system_prompt: "You are a helpful assistant"
+  timeout: 60  # Timeout in seconds (1 minute)
+  max_retries: 3  # Number of retry attempts
+
+# HiRAG Configuration
+hirag:
+  working_dir: "your_folder"
+  enable_llm_cache: false
+  enable_hierachical_mode: true
+  embedding_batch_num: 6
+  embedding_func_max_async: 8
+  enable_naive_rag: true
+  neo4j_url: "neo4j://localhost:7687"
+  neo4j_auth: ["username", "password"]
