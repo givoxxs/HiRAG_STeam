@@ -152,12 +152,49 @@ graph_func = HiRAG(working_dir=config['hirag']['working_dir'],
 # print("Perform hi search:")
 # print(graph_func.query("What are the top themes in this story?", param=QueryParam(mode="hi")))
 
-print("Nhập câu hỏi (gõ 'exit' để thoát):")
-while True:
-    user_query = input("> ").strip()
-    if user_query.lower() == "exit":
-        break
-    if not user_query:
+# print("Nhập câu hỏi (gõ 'exit' để thoát):")
+# while True:
+#     user_query = input("> ").strip()
+#     if user_query.lower() == "exit":
+#         break
+#     if not user_query:
+#         continue
+#     answer = graph_func.query(user_query, param=QueryParam(mode="hi"))
+#     print(answer)
+
+DATA_DIR = "Luat_txt"
+
+def read_text_safe(file_path: str) -> str:
+    encodings = ["utf-8", "utf-16", "utf-16-le", "utf-16-be", "cp1258"]
+
+    for enc in encodings:
+        try:
+            with open(file_path, encoding=enc) as f:
+                return f.read()
+        except Exception:
+            continue
+
+    raise ValueError(f"Cannot decode file: {file_path}")
+
+for filename in sorted(os.listdir(DATA_DIR)):
+    if not filename.endswith(".txt"):
         continue
-    answer = graph_func.query(user_query, param=QueryParam(mode="hi"))
-    print(answer)
+
+    file_path = os.path.join(DATA_DIR, filename)
+
+    try:
+        print(f"🚀 Processing {filename}")
+
+        content = read_text_safe(file_path)
+        content = f"[FILE_ID={filename}]\n" + content
+
+        if len(content.strip()) < 100:
+            print(f"⚠️ Skip empty file: {filename}")
+            continue
+
+        graph_func.insert(content)
+
+        time.sleep(1)  # tránh overload LLM / embedding
+
+    except Exception as e:
+        logging.error(f"❌ Failed file {filename}: {e}")
