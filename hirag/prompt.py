@@ -14,6 +14,14 @@ You are an intelligent assistant that helps a human analyst to analyze claims ag
 -Goal-
 Given a text document that is potentially relevant to this activity, an entity specification, and a claim description, extract all entities that match the entity specification and all claims against those entities.
 
+IMPORTANT:
+- The input text may be in Vietnamese.
+- ALWAYS analyze the text in its original language.
+- DO NOT translate entity names.
+- ALL outputs (entity_description, relationship_description, summaries, reports)
+  MUST be written in VIETNAMESE.
+- Keep original Vietnamese proper nouns exactly as they appear in the text.
+
 -Steps-
 1. Extract all named entities that match the predefined entity specification. Entity specification can either be a list of entity names or a list of entity types.
 2. For each entity identified in step 1, extract all claims associated with the entity. Claims need to match the specified claim description, and the entity should be the subject of the claim.
@@ -67,6 +75,14 @@ Information discovery is the process of identifying and assessing relevant infor
 
 # Goal
 Write a comprehensive report of a community, given a list of entities that belong to the community as well as their relationships and optional associated claims. The report will be used to inform decision-makers about information associated with the community and their potential impact. The content of this report includes an overview of the community's key entities, their legal compliance, technical capabilities, reputation, and noteworthy claims.
+
+IMPORTANT:
+- The input text may be in Vietnamese.
+- ALWAYS analyze the text in its original language.
+- DO NOT translate entity names.
+- ALL outputs (entity_description, relationship_description, summaries, reports)
+  MUST be written in VIETNAMESE.
+- Keep original Vietnamese proper nouns exactly as they appear in the text.
 
 # Report Structure
 
@@ -196,6 +212,14 @@ PROMPTS[
 ] = """-Goal-
 Given a text document that is potentially relevant to this activity and a list of entity types, identify all entities of those types from the text and all relationships among the identified entities.
 
+IMPORTANT:
+- The input text may be in Vietnamese.
+- ALWAYS analyze the text in its original language.
+- DO NOT translate entity names.
+- ALL outputs (entity_description, relationship_description, summaries, reports)
+  MUST be written in VIETNAMESE.
+- Keep original Vietnamese proper nouns exactly as they appear in the text.
+
 -Steps-
 1. Identify all entities. For each identified entity, extract the following information:
 - entity_name: Name of the entity, capitalized
@@ -299,6 +323,14 @@ PROMPTS[
 ] = """
 Given a text document that is potentially relevant to a list of entity types, identify all entities of those types.
 
+IMPORTANT:
+- The input text may be in Vietnamese.
+- ALWAYS analyze the text in its original language.
+- DO NOT translate entity names.
+- ALL outputs (entity_description, relationship_description, summaries, reports)
+  MUST be written in VIETNAMESE.
+- Keep original Vietnamese proper nouns exactly as they appear in the text.
+
 -Steps-
 1. Identify all entities. For each identified entity, extract the following information:
 - entity_name: Name of the entity, capitalized
@@ -382,6 +414,14 @@ PROMPTS[
     "hi_relation_extraction"
 ] = """
 Given a text document that is potentially relevant to a list of entities, identify all relationships among the given identified entities.
+
+IMPORTANT:
+- The input text may be in Vietnamese.
+- ALWAYS analyze the text in its original language.
+- DO NOT translate entity names.
+- ALL outputs (entity_description, relationship_description, summaries, reports)
+  MUST be written in VIETNAMESE.
+- Keep original Vietnamese proper nouns exactly as they appear in the text.
 
 -Steps-
 1. From the entities given by user, identify all pairs of (source_entity, target_entity) that are *clearly related* to each other.
@@ -469,6 +509,14 @@ Please concatenate all of these into a single, comprehensive description. Make s
 If the provided descriptions are contradictory, please resolve the contradictions and provide a single, coherent summary.
 Make sure it is written in third person, and include the entity names so we the have full context.
 
+IMPORTANT:
+- The input text may be in Vietnamese.
+- ALWAYS analyze the text in its original language.
+- DO NOT translate entity names.
+- ALL outputs (entity_description, relationship_description, summaries, reports)
+  MUST be written in VIETNAMESE.
+- Keep original Vietnamese proper nouns exactly as they appear in the text.
+
 #######
 -Data-
 Entities: {entity_name}
@@ -496,6 +544,14 @@ Answer YES | NO if there are still entities that need to be added.
 PROMPTS[
     "summary_clusters"
 ] = """You are tasked with analyzing a set of entity descriptions and a given list of meta attributes. Your goal is to summarize at least one attribute entity for the entity set in the given entity descriptions. And the summarized attribute entity must match the type of at least one meta attribute in the given meta attribute list (e.g., if a meta attribute is "company", the attribute entity could be "Amazon" or "Meta", which is a kind of meta attribute "company"). And it shoud be directly relevant to the entities described in the entity description set. The relationship between the entity set and the generated attribute entity should be clear and logical.
+
+IMPORTANT:
+- The input text may be in Vietnamese.
+- ALWAYS analyze the text in its original language.
+- DO NOT translate entity names.
+- ALL outputs (entity_description, relationship_description, summaries, reports)
+  MUST be written in VIETNAMESE.
+- Keep original Vietnamese proper nouns exactly as they appear in the text.
 
 -Steps-
 1. Identify at least one attribute entity for the given entity description list. For each attribute entity, extract the following information:
@@ -558,6 +614,14 @@ Generate a response of the target length and format that responds to the user's 
 If you don't know the answer, just say so. Do not make anything up.
 Do not include information where the supporting evidence for it is not provided.
 
+IMPORTANT:
+- The input text may be in Vietnamese.
+- ALWAYS analyze the text in its original language.
+- DO NOT translate entity names.
+- ALL outputs (entity_description, relationship_description, summaries, reports)
+  MUST be written in VIETNAMESE.
+- Keep original Vietnamese proper nouns exactly as they appear in the text.
+
 ---Target response length and format---
 
 {response_type}
@@ -597,6 +661,14 @@ Generate a response consisting of a list of key points that responds to the user
 
 You should use the data provided in the data tables below as the primary context for generating the response.
 If you don't know the answer or if the input data tables do not contain sufficient information to provide an answer, just say so. Do not make anything up.
+
+IMPORTANT:
+- The input text may be in Vietnamese.
+- ALWAYS analyze the text in its original language.
+- DO NOT translate entity names.
+- ALL outputs (entity_description, relationship_description, summaries, reports)
+  MUST be written in VIETNAMESE.
+- Keep original Vietnamese proper nouns exactly as they appear in the text.
 
 Each key point in the response should have the following element:
 - Description: A comprehensive description of the point.
@@ -656,6 +728,14 @@ Note that the analysts' reports provided below are ranked in the **descending or
 
 If you don't know the answer or if the provided reports do not contain sufficient information to provide an answer, just say so. Do not make anything up.
 
+IMPORTANT:
+- The input text may be in Vietnamese.
+- ALWAYS analyze the text in its original language.
+- DO NOT translate entity names.
+- ALL outputs (entity_description, relationship_description, summaries, reports)
+  MUST be written in VIETNAMESE.
+- Keep original Vietnamese proper nouns exactly as they appear in the text.
+
 The final response should remove all irrelevant information from the analysts' reports and merge the cleaned information into a comprehensive answer that provides explanations of all the key points and implications appropriate for the response length and format.
 
 Add sections and commentary to the response as appropriate for the length and format. Style the response in markdown.
@@ -707,6 +787,14 @@ If you don't know the answer or if the provided knowledge do not contain suffici
 Generate a response of the target length and format that responds to the user's question, summarizing all information in the input data tables appropriate for the response length and format, and incorporating any relevant general knowledge.
 If you don't know the answer, just say so. Do not make anything up.
 Do not include information where the supporting evidence for it is not provided.
+
+IMPORTANT:
+- The input text may be in Vietnamese.
+- ALWAYS analyze the text in its original language.
+- DO NOT translate entity names.
+- ALL outputs (entity_description, relationship_description, summaries, reports)
+  MUST be written in VIETNAMESE.
+- Keep original Vietnamese proper nouns exactly as they appear in the text.
 ---Target response length and format---
 {response_type}
 """

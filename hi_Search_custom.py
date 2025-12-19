@@ -176,25 +176,34 @@ def read_text_safe(file_path: str) -> str:
 
     raise ValueError(f"Cannot decode file: {file_path}")
 
-for filename in sorted(os.listdir(DATA_DIR)):
-    if not filename.endswith(".txt"):
-        continue
+try:
+    file_name = "86_2015_QH13(12998).txt"
+    file_path = os.path.join(DATA_DIR, file_name)
+    print(f"🚀 Processing {file_name}")
+    content = read_text_safe(file_path)
+    graph_func.insert(content)
+except Exception as e:
+    logging.error(f"❌ Failed file {file_name}: {e}")
 
-    file_path = os.path.join(DATA_DIR, filename)
+# for filename in sorted(os.listdir(DATA_DIR)):
+#     if not filename.endswith(".txt"):
+#         continue
 
-    try:
-        print(f"🚀 Processing {filename}")
+#     file_path = os.path.join(DATA_DIR, filename)
 
-        content = read_text_safe(file_path)
-        content = f"[FILE_ID={filename}]\n" + content
+#     try:
+#         print(f"🚀 Processing {filename}")
 
-        if len(content.strip()) < 100:
-            print(f"⚠️ Skip empty file: {filename}")
-            continue
+#         content = read_text_safe(file_path)
+#         content = f"[FILE_ID={filename}]\n" + content
 
-        graph_func.insert(content)
+#         if len(content.strip()) < 100:
+#             print(f"⚠️ Skip empty file: {filename}")
+#             continue
 
-        time.sleep(1)  # tránh overload LLM / embedding
+#         graph_func.insert(content)
 
-    except Exception as e:
-        logging.error(f"❌ Failed file {filename}: {e}")
+#         time.sleep(1)  # tránh overload LLM / embedding
+
+#     except Exception as e:
+#         logging.error(f"❌ Failed file {filename}: {e}")
